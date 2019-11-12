@@ -7,11 +7,10 @@ RUN apt-get update \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN useradd -ms /bin/bash backdev
 RUN npm install -g nodemon
-# Pour bien faire, il faudrait exécuter la suite
+# Pour bien faire, il faut exécuter la suite
 # avec cet utilisateur backdev avec de moindres privilèges
-# Pour simplifier les manips, le login utilisé sera celui de root
-# Pour notamment démarrer le service mysqld
-# USER backdev
-# Par contre on travaillera dans son répertoire.
+USER backdev
+# Pour démarrer le serveur mariadb, il faudra se connecté (une fois démarré)
+# en tant que root avec la commande docker exec
 WORKDIR /home/backdev
 EXPOSE 3000
